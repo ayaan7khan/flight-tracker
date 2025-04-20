@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Garbage Collector Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Garbage Collection Simulator</h1>
+            <div class="stats">
+                <div class="stat">
+                    <span>Total Memory:</span>
+                    <span id="totalMemory">1024 MB</span>
+                </div>
+                <div class="stat">
+                    <span>Used Memory:</span>
+                    <span id="usedMemory">0 MB</span>
+                </div>
+                <div class="stat">
+                    <span>GC Cycles:</span>
+                    <span id="gcCycles">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="controls">
+                <div class="control-group">
+                    <h2>Object Creation</h2>
+                    <div class="input-group">
+                        <label for="objectName">Name:</label>
+                        <input type="text" id="objectName" placeholder="Object name">
+                    </div>
+                    <div class="input-group">
+                        <label for="objectSize">Size (MB):</label>
+                        <input type="number" id="objectSize" min="1" max="100" value="10">
+                    </div>
+                    <button id="createObject" class="btn primary">Create Object</button>
+                </div>
+
+                <div class="control-group">
+                    <h2>References</h2>
+                    <div class="input-group">
+                        <label for="fromObject">From:</label>
+                        <select id="fromObject"></select>
+                    </div>
+                    <div class="input-group">
+                        <label for="toObject">To:</label>
+                        <select id="toObject"></select>
+                    </div>
+                    <button id="createReference" class="btn secondary">Create Reference</button>
+                </div>
+
+                <div class="control-group">
+                    <h2>Garbage Collection</h2>
+                    <button id="runGC" class="btn warning">Run GC</button>
+                    <div class="gc-algorithm">
+                        <label>
+                            <input type="radio" name="gcAlgorithm" value="markAndSweep" checked>
+                            Mark and Sweep
+                        </label>
+                        <label>
+                            <input type="radio" name="gcAlgorithm" value="reference">
+                            Reference Counting
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualization">
+                <div class="heap-container">
+                    <h2>Heap Visualization</h2>
+                    <div id="heapVisualization" class="heap"></div>
+                </div>
+                <div class="reference-graph">
+                    <h2>Reference Graph</h2>
+                    <div id="referenceGraph" class="graph"></div>
+                </div>
+            </div>
+        </main>
+
+        <div class="log-container">
+            <h2>Event Log</h2>
+            <div id="eventLog" class="log"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
